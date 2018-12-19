@@ -1,2 +1,20 @@
-# rentarun
-a device rental system. and  experimental implementation for scala with ddd
+# Rentarun
+
+## Requirements
+
+## Setup
+
+## Build
+
+## Unit Tests
+
+## Composition
+
+### Architecture
+
+### Compornents
+
+### Conceptual Models
+![](./doc/context_map.png)
+
+![](./doc/domain_model.png)
