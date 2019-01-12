@@ -17,4 +17,5 @@
 ### Conceptual Models
 ![](./doc/context_map.png)
 
+### Domain Models
 ![](./doc/domain_model.png)
