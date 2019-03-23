@@ -5,7 +5,7 @@ import com.freedom.rentarun.seedwork.{Aggregate, DomainError}
 import scala.reflect.{ClassTag, classTag}
 import scala.util.Try
 
-case class CatalogItem[S >: SpecificInfo](
+case class CatalogItem[S >: Specification](
   id: CatalogItemId,
   version: Option[Long],
   description: CatalogItemDescription,
@@ -14,7 +14,7 @@ case class CatalogItem[S >: SpecificInfo](
   status: CatalogItemStatus,
   rentBy: Option[RentBy],
   rentDueAt: Option[RentDueAt],
-  specificInfo: S
+  specification: S
 ) extends Aggregate {
   override type AggregateType = CatalogItem[S]
   override type IdType        = CatalogItemId
@@ -30,8 +30,8 @@ object CatalogItem {
     status: String,
     rentBy: Option[String],
     rentDueAt: Option[RentDueAt],
-    specificInfo: SpecificInfo
-  ): Either[DomainError, CatalogItem[SpecificInfo]] =
+    specification: Specification
+  ): Either[DomainError, CatalogItem[Specification]] =
     Try {
       CatalogItem(
         id = CatalogItemId.generate,
@@ -42,28 +42,28 @@ object CatalogItem {
         status = CatalogItemStatus.valueOf(status),
         rentBy = None,
         rentDueAt = None,
-        specificInfo = specificInfo
+        specification = specification
       )
     }.toDomainError
 }
 
 
-trait SpecificInfo {
+trait Specification {
 }
 
-case class SpecificInfoOfAndroid() extends SpecificInfo {
+case class AndroidSpecification() extends Specification {
 
 }
-case class SpecificInfoOfIos() extends SpecificInfo {
+case class IosSpecification() extends Specification {
 
 }
-case class SpecificInfoOfMacOs() extends SpecificInfo {
+case class MacOsSpecification() extends Specification {
 
 }
-case class SpecificInfoOfWindows() extends SpecificInfo {
+case class WindowsSpecification() extends Specification {
 
 }
 
-case class SpecificInfoOfOther() extends SpecificInfo {
+case class PeripheralsSpecification() extends Specification {
 
 }
